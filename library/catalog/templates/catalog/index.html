@@ -9,5 +9,16 @@
     <h1>HomePage</h1>
     <p>Total Books: {{ num_books }}</p>
     <p>Num Available: {{ num_instance_avail }}</p>
+    <br>
+    {% if user.is_authenticated %}
+        <p>You are logged in</p>
+        <p>Welcome: {{ user.get_username }}</p>
+        <br>
+        <a href="{% url 'logout' %}?next={{ request.path }}">LOGOUT</a>
+    {% else %}
+        <p>You are not logged in</p>
+        <br>
+        <a href="{% url 'login' %}?next={{ request.path }}">LOGIN</a>
+    {% endif %}
 </body>
 </html>
